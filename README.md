@@ -1,4 +1,5 @@
-# NEURONOVE SITE, semestrální práce č.1 
+# NEURONOVÉ SÍTĚ 1
+
 Natrénování neuronové sítě, pro danou množinu dat k jejich oddělení do dvou shluků.
 
 Celý postup popsán v souboru Semestralni_prace.pdf.
