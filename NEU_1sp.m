@@ -1,5 +1,5 @@
 % 1. SP z NEU
-% Markéta Jedlièková
+% Marketa Jedlickova
 
 %% Inicializace
 clc
@@ -7,11 +7,11 @@ clear all
 
 data = load('tren_m.txt');
 
-x1 = data(:,1);   % první vstup
-x2 = data(:,2);   % druhý vstup
-u  = data(:,3);   % požadovaný výstup
+x1 = data(:,1);   % prvnÃ­ vstup
+x2 = data(:,2);   % druhÃ½ vstup
+u  = data(:,3);   % poÅ¾adovanÃ½ vÃ½stup
 
-% Vykreslení dat
+% VykreslenÃ­ dat
 figure(1)
 hold on;
 for i = 1:100
@@ -26,8 +26,8 @@ xlabel('x1')
 ylim([-1.6;0]);
 ylabel('x2')
 
-%% Trénování sítì
-% Dimenze: vstupni vektor I je 2, I.vrstva J je 4 a výstupni vektor M je 1
+%% TrÃ©novÃ¡nÃ­ sÃ­tÃ¬
+% Dimenze: vstupni vektor I je 2, I.vrstva J je 4 a vÃ½stupni vektor M je 1
 
 % Inicializace
 x = [x1,x2];
@@ -44,18 +44,17 @@ d =  rand(1)*2-1;                                          % M
 
 save('inicializace.mat','w','v','b','d');
 
-%%
 load('inicializace.mat');
 
 lambda = 0.2;
-c = 1.5;                  % konstanta uèení
+c = 1.5;                  % konstanta uÃ¨enÃ­
 Emax = 0.01;              % !!!!!  maximalni povolena chyba
 p = 10000;                % !!!!!  pocet trenovacich cyklu
 E = 0;     
 
 % pocatecni chyba
 
-% Výpoèet odezvy
+% VÃ½pocet odezvy
 
 for q = 1 : p
     for k = 1:100
@@ -64,12 +63,12 @@ for q = 1 : p
         
         z = [activ(w(1,:)*xc+b(1)); activ(w(2,:)*xc+b(2)); activ(w(3,:)*xc+b(3)); activ(w(4,:)*xc+b(4))];
         y = activ(v*z + d);
-        % u požadovaný výstup je již definován výše
+        % u poÅ¾adovanÃ½ vÃ½stup je jiÅ¾ definovÃ¡n vÃ½Å¡e
         
-        % Výpoèet chyby
+        % VÃ½pocet chyby
         E = E + (1/2)*((uc-y)'*(uc-y));
         
-        % Aktualizace vah a prahù
+        % Aktualizace vah a prahÃ¹
         for j =1:4
             for i = 1:2
                 % M je 1 nemusi byt suma :)
@@ -82,10 +81,10 @@ for q = 1 : p
             v(j)= v(j) + c*(uc-y)*der(v*z+d)*z(j);
             d = d + c*(uc-y)*der(v*z+d);
         end
-        % Test vyèerpanosti trénovací množiny ---> for cyklus
+        % Test vycerpanosti trÃ©novacÃ­ mnoÅ¾iny ---> for cyklus
     end
     
-    % Konec trénovacího cyklu
+    % Konec trÃ©novacÃ­ho cyklu
     Ec(q) = E;
     
     if Ec(q)< Emax
@@ -107,13 +106,13 @@ end
 
 figure(2);
 plot(1:q,Ec);
-xlabel('Císlo trénovacího cyklu');
+xlabel('CÃ­slo trÃ©novacÃ­ho cyklu');
 ylabel('Chyba Ec')
 xlim([0;q]);
 
 save('natrenovana_data.mat','c','lambda','q','w','b','v','d','Ec');
 
-%% Vyhodnocení sítì
+%% VyhodnocenÃ­ sÃ­tÃ¬
 
 load('natrenovana_data.mat');
 
