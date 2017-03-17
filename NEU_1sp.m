@@ -1,7 +1,7 @@
 % 1. SP z NEU
 % Marketa Jedlickova
 
-%% Inicializace
+% Inicializace
 clc
 clear all
 
@@ -26,7 +26,7 @@ xlabel('x1')
 ylim([-1.6;0]);
 ylabel('x2')
 
-%% Trénování sítì
+% Trénování sítì
 % Dimenze: vstupni vektor I je 2, I.vrstva J je 4 a výstupni vektor M je 1
 
 % Inicializace
@@ -112,7 +112,7 @@ xlim([0;q]);
 
 save('natrenovana_data.mat','c','lambda','q','w','b','v','d','Ec');
 
-%% Vyhodnocení sítì
+% Vyhodnocení sítì
 
 load('natrenovana_data.mat');
 
